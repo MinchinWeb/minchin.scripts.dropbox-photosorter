@@ -49,12 +49,15 @@ __license__ = "MIT License"
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('photosorter')
 
+# lowercased file extensions to move
+VALID_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.mov']
 
 class HashCache:
     """
     Gives a quick answer to the question if there's an identical file
     in the given target folder.
     """
+
     def __init__(self) -> None:
         # folder -> (hashes, filename -> hash)
         self.hashes = collections.defaultdict(
@@ -62,6 +65,7 @@ class HashCache:
         )  # type: Mapping[str, Tuple[Set[str], Dict[str, str]]]
 
     def has_file(self, target_folder: str, path: str) -> bool:
+        """Determine if a file already exists in our target directory."""
         # Strip trailing slashes etc.
         target_folder = os.path.normpath(target_folder)
 
@@ -103,9 +107,7 @@ class HashCache:
 
     @staticmethod
     def _files_in_folder(folder_path: str) -> List[str]:
-        """
-        Iterable with full paths to all files in `folder_path`.
-        """
+        """Return Iterable with full paths to all files in `folder_path`."""
         try:
             names = (
                 os.path.join(folder_path, f) for f in os.listdir(folder_path)
@@ -159,7 +161,7 @@ def resolve_duplicate(path: str) -> str:
         new_fname = '%s-%i%s' % (filename, dedup_index, ext)
         new_path = os.path.join(dirname, new_fname)
         if not os.path.exists(new_path):
-            logger.debug('Deduplicating %s to %s', path, new_path)
+            logger.debug('De-duplicating %s to %s', path, new_path)
             break
         dedup_index += 1
 
@@ -168,7 +170,7 @@ def resolve_duplicate(path: str) -> str:
 
 def is_valid_filename(path: str) -> bool:
     ext = os.path.splitext(path)[1].lower()
-    return ext in ['.jpg', '.jpeg', '.png', '.mov']
+    return ext in VALID_EXTENSIONS
 
 
 def dest_path(root_folder: str, path: str) -> str:
@@ -185,22 +187,20 @@ def path_from_datetime(root_folder: str, dt: datetime.datetime,
 
 
 def folder_from_datetime(dt: datetime.datetime) -> str:
-    return dt.strftime('%Y' + os.sep + '%Y-%m')
+    """Determine the folder path to store moved files in."""
+    # return dt.strftime('%Y' + os.sep + '%Y-%m')
+    return dt.strftime('%Y-%m' + os.sep + '%Y_%m_%d')
 
 
 def filename_from_datetime(dt: datetime.datetime, path: str) -> str:
-    """
-    Returns basename + original extension.
-    """
+    """Returs basename + original extension."""
     base = basename_from_datetime(dt)
     ext = os.path.splitext(path)[1]
     return base + ext.lower()
 
 
 def basename_from_datetime(dt: datetime.datetime) -> str:
-    """
-    Returns a string formatted like this '2004-05-07 20.16.31'.
-    """
+    """Return a string formatted like this '2004-05-07 20.16.31'."""
     return dt.strftime('%Y-%m-%d %H.%M.%S')
 
 
@@ -294,6 +294,8 @@ class MoveFileThread(threading.Thread):
                 file_path = self.shared_queue.get(block=False, timeout=1)
             except queue.Empty:  # type: ignore
                 continue
+            # wait for the file to be finished moving in to our source directory
+            time.sleep(0.5)
             logger.debug('MoveFileThread got file %s', file_path)
             try:
                 move_file(self.dest_folder, file_path)
