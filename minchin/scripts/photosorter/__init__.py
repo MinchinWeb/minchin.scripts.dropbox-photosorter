@@ -36,6 +36,16 @@ import watchdog.observers
 from typing import List, Optional, Mapping, Dict, Set, Tuple  # noqa
 
 
+# Metadata
+__name__ = 'minchin.scripts.photosorter'
+__version__ = '2.0.0+dev.20170826.0'
+__description__ = "A Python script to keep my photos from Dropbox organized."
+__author__ = "William Minchin"
+__email__ = "w_minchin@hotmail.com"
+__url__ = "https://github.com/MinchinWeb/minchin.scripts.photosorter"
+__license__ = "MIT License"
+
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('photosorter')
 
