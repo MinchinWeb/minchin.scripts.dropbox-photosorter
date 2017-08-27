@@ -1,9 +1,8 @@
 photosorter
 ===========
 
-.. image:: https://img.shields.io/pypi/v/colourettu.svg?style=flat
-    :target: https://pypi.python.org/pypi/colourettu/
-
+.. image:: https://img.shields.io/pypi/v/minchin.scripts.photosorter.svg?style=flat
+    :target: https://pypi.python.org/pypi/minchin.scripts.photosorter/
 .. image:: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter.svg?branch=master
     :target: https://travis-ci.org/dbader/photosorter)
 .. image:: https://coveralls.io/repos/MinchinWeb/minchin.scripts.photosorter/badge.svg?branch=master
@@ -17,32 +16,33 @@ a *target directory* depending on when the photo was taken, using EXIF data and
 creation date as a fallback.
 
 Directory and file names follow a simple naming convention
-(`YYYY-MM/YYYY-MM-DD hh:mm:ss.ext`) that keeps everything neatly organized.
-Duplicates are detected and ignored based on their SHA1 hash. Photos taken in
-the same instant get de-duplicated by adding a suffix (`-1`, `-2`, etc) to
-their filenames.
+(``YYYY-MM/YYY_MM_DD/YYYY-MM-DD hh:mm:ss.ext``) that keeps everything neatly
+organized. Duplicates are detected and ignored based on their SHA1 hash. Photos
+taken in the same instant get de-duplicated by adding a suffix (``-1``, ``-2``,
+etc) to their filenames.
 
 The result looks somewhat like this:
 
-    ├── 2013
-    │   ├── 2013-01
+    ├── 2013-01
+    │   ├── 2013_01_05
     │   │   ├── 2013-01-05\ 13.24.45.jpg
     │   │   ├── 2013-01-05\ 14.25.54.jpg
-    │   │   ├── 2013-01-05\ 21.28.48-1.jpg
+    │   │   └── 2013-01-05\ 21.28.48-1.jpg
+    │   ├── 2013_01_06
     │   │   ├── 2013-01-06\ 16.05.02.jpg
     │   │   ├── 2013-01-06\ 19.59.25.jpg
     │   │   ├── 2013-01-06\ 20.40.28.jpg
-    │   │   ├── 2013-01-06\ 21.14.38.jpg
-    │   │   ├── 2013-01-08\ 11.45.51.jpg
-    │   ├── 2013-02
-    │   |   ├─ ...
-    │   ├── ...
-    │   └── 2013-12
-    ├── 2014
-    │   ├── 2014-01
-    │   ├── 2014-02
-    │   ├── ...
-    │   └── 2014-12
+    │   │   └── 2013-01-06\ 21.14.38.jpg
+    │   └── 2013_01_08
+    │       └── 2013-01-08\ 11.45.51.jpg
+    ├── 2013-02
+    |   └─ ...
+    ├── ...
+    ├── 2013-12
+    ├── 2014-01
+    ├── 2014-02
+    ├── ...
+    ├── 2014-12
     ├── ...
 
 I use ``C:\Users\[windows username\Dropbox\Camera Uploads`` as the source
@@ -77,20 +77,20 @@ default, ignored):
 
     > photosorter src_dir dest_dir --move-existing
 
-<!--
+Run on System Startup
+---------------------
 
-## Run on startup
+.. note:: This is currently un-tested.
 
 1. Move `photosorter.conf.example` to `/etc/init` as `photosorter.conf`
    and edit it to suit your needs by replacing the user, source and target
    directories.
 2. Run `$ sudo start photosorter`.
 3. Check the logs at `/var/log/upstart/photosorter.log`.
--->
 
 Meta
 ----
 
-Distributed under the MIT license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See ``LICENSE.txt`` for more information.
 
 https://github.com/MinchinWeb/minchin.scripts.photosorter

@@ -242,6 +242,10 @@ class MissingExifTimestampError(Exception):
     pass
 
 
+class PhotosorterCompleteInterrupt(Exception):
+    pass
+
+
 def exif_creation_timestamp(path: str) -> str:
     with open(path, 'rb') as f:
         tags = exifread.process_file(f, details=False)
@@ -362,12 +366,15 @@ def parse_args():
     parser.add_argument('dest_folder')
     parser.add_argument('--version', '-v', action='version',
                         version='{}, version {}'.format(__title__, __version__))
-    _add_boolean_argument(parser, 'move-existing',
-                          help="whether to move existing files (defaults to 'no')")
+    _add_boolean_argument(parser, 'move-existing', default=False,
+                          help="move existing files (defaults to 'no')")
+    # _add_boolean_argument(parser, 'deamon-mode', default=False,
+    #                       help="run forever (aka 'deamon mode') (defaults to 'no')")
     return parser.parse_args()
 
 
-def run(src_folder: str, dest_folder: str, move_existing: bool):
+def run(src_folder: str, dest_folder: str, move_existing: bool,
+        deamon_mode: bool):
     shared_queue = queue.Queue()  # type: queue.Queue[str]
 
     existing_thread=None
@@ -387,8 +394,13 @@ def run(src_folder: str, dest_folder: str, move_existing: bool):
     try:
         while True:
             time.sleep(1)
+        if not deamon_mode and shared_queue.empty():
+            raise PhotosorterCompleteInterrupt
     except KeyboardInterrupt:
         logger.info('Shutting down')
+        pass
+    except PhotosorterCompleteInterrupt:
+        logger.info('Queue Complete, Shutting down.')
         pass
 
     observer.stop()
@@ -404,7 +416,9 @@ def main():
     args = parse_args()
     logger.info('Watching %s for changes, destination is %s',
                 args.src_folder, args.dest_folder)
-    run(args.src_folder, args.dest_folder, args.move_existing)
+    run(args.src_folder, args.dest_folder, args.move_existing,
+        # args.deamon_mode)
+        False)
     return 0
 
 
