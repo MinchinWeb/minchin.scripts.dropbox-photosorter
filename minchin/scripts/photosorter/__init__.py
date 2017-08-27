@@ -21,20 +21,19 @@ import datetime
 import hashlib
 import logging
 import os
+from pathlib import Path
 import queue
 import re
 import shutil
 import sys
 import threading
 import time
+from typing import Dict, List, Mapping, Optional, Set, Tuple  # noqa
 
 import exifread
 import watchdog
 import watchdog.events
 import watchdog.observers
-
-from typing import List, Optional, Mapping, Dict, Set, Tuple  # noqa
-
 
 # Metadata
 __title__ = 'minchin.scripts.photosorter'
@@ -308,17 +307,75 @@ class MoveFileThread(threading.Thread):
         self.is_running = False
 
 
+class ExistingFilesThread(threading.Thread):
+    def __init__(self, shared_queue: queue.Queue, src_folder: str) -> None:
+        super().__init__()
+        self.shared_queue = shared_queue
+        self.is_running = True
+        self.all_dirs = [src_folder, ]
+
+    def run(self) -> None:
+        """Load all existing picture files into queue."""
+        # print('running existing files thread')
+        while self.is_running:
+            # on first run, load all the files, one at a time
+            # print(' ' + str(self.all_dirs))
+            try:
+                current_file = self.all_dirs.pop()
+            except IndexError:
+                logging.info('All existing files loaded into queue.')
+                self.is_running = False
+            
+            current_file = Path(current_file)
+            # print('   ' + str(current_file))
+            for f in current_file.iterdir():
+                # print('     ' + str(f))
+                if f.is_dir():
+                    self.all_dirs.append(str(f))
+                elif f.suffix.lower() in VALID_EXTENSIONS:
+                    self.shared_queue.put(str(f))
+            # print('   ' + str(self.all_dirs))
+
+    def stop(self) -> None:
+        self.is_running = False
+
+
 def parse_args():
+    def _str_to_bool(s):
+        """Convert string to bool (in argparse context)."""
+        # from https://stackoverflow.com/a/36194213/4276230
+        if s.lower() not in ['true', 'false']:
+            raise ValueError('Need bool; got %r' % s)
+        return {'true': True, 'false': False}[s.lower()]
+
+    def _add_boolean_argument(parser, name, default=False, help=None):                                                                                               
+        """Add a boolean argument to an ArgumentParser instance."""
+        # modified from https://stackoverflow.com/a/36194213/4276230
+        group = parser.add_mutually_exclusive_group()
+        group.add_argument(
+            '--' + name, nargs='?', default=default, const=True, type=_str_to_bool)
+        group.add_argument('--no-' + name, dest=name, action='store_false',
+                           help=help)
+
     parser = argparse.ArgumentParser()
     parser.add_argument('src_folder')
     parser.add_argument('dest_folder')
     parser.add_argument('--version', '-v', action='version',
                         version='{}, version {}'.format(__title__, __version__))
+    _add_boolean_argument(parser, 'move-existing',
+                          help="whether to move existing files (defaults to 'no')")
     return parser.parse_args()
 
 
-def run(src_folder: str, dest_folder: str):
+def run(src_folder: str, dest_folder: str, move_existing: bool):
     shared_queue = queue.Queue()  # type: queue.Queue[str]
+
+    existing_thread=None
+    if move_existing:
+        existing_thread = ExistingFilesThread(shared_queue, src_folder)
+        existing_thread.start()
+        existing_thread.join()
+
     move_thread = MoveFileThread(shared_queue, dest_folder)
     move_thread.start()
 
@@ -347,7 +404,7 @@ def main():
     args = parse_args()
     logger.info('Watching %s for changes, destination is %s',
                 args.src_folder, args.dest_folder)
-    run(args.src_folder, args.dest_folder)
+    run(args.src_folder, args.dest_folder, args.move_existing)
     return 0
 
 

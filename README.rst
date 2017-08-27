@@ -66,11 +66,16 @@ The easiest way to install the script is through pip:
 Run
 ---
 
-Watch `src_dir` and sort incoming photos into `dest_dir`.
+Watch `src_dir` and sort incoming photos into ``dest_dir``:
 
     > photosorter src_dir dest_dir
 
-When you're done with it, `Ctrl + C` will end the program.
+When you're done with it, ``Ctrl + C`` will end the program.
+
+If you also want to move the existing files in ``src_dir`` (which are, by
+default, ignored):
+
+    > photosorter src_dir dest_dir --move-existing
 
 <!--
 
