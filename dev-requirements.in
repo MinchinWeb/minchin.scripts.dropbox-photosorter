@@ -6,3 +6,4 @@ pytest-flake8>=0.5
 pytest>=2.9.2
 mypy-lang>=0.4.1
 pip-tools
+minchin.releaser
