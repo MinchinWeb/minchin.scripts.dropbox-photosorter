@@ -148,4 +148,9 @@ setuptools.setup(
     classifiers=CLASSIFIERS,
     namespace_packages=['minchin', 
                         'minchin.scripts', ],
+    entry_points={
+        'console_scripts': [
+            'photosorter = minchin.scripts.photosorter:main',
+        ],
+    },
 )

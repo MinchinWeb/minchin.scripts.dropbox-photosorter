@@ -5,7 +5,7 @@ photosorter
 [![Coverage Status](https://coveralls.io/repos/MinchinWeb/minchin.scripts.photosorter/badge.svg?branch=master)](https://coveralls.io/r/dbader/photosorter?branch=master)
 
 A little Python script to keep my photos organized on Dropbox. Designed to be
-run intermittently.
+run intermittently, but will run forever by default.
 
 It watches a *source directory* for modifications and moves new image files to
 a *target directory* depending on when the photo was taken, using EXIF data and
@@ -51,21 +51,22 @@ Inspired by
 - <http://chambersdaily.com/learning-to-love-photo-management/>
 - <https://dbader.org/blog/how-to-store-photos-in-the-cloud-and-avoid-vendor-lock-in>
 
-<!--
+
 ## Setup
 
-    $ git clone git@github.com:dbader/photosorter.git
-    $ cd photosorter
-    $ pyvenv venv
-    $ . venv/bin/activate
-    $ pip install -r dev-requirements.txt
-    $ py.test
+The easiest way to install the script is through pip:
+
+    > pip install minchin.scripts.photosorter
 
 ## Run
 
 Watch `src_dir` and sort incoming photos into `dest_dir`.
 
-    $ ./sorter.py src_dir dest_dir
+    > photosorter src_dir dest_dir
+
+When you're done with it, `Ctrl + C` will end the program.
+
+<!--
 
 ## Run on startup
 
