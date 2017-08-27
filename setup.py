@@ -53,7 +53,7 @@ META_PATH = ['minchin', 'scripts', 'photosorter', '__init__.py']
 NAME         = find_meta(*META_PATH, meta_key='title').lower()
 VERSION      = find_meta(*META_PATH, meta_key='version')
 SHORT_DESC   = find_meta(*META_PATH, meta_key='description')
-LONG_DESC    = read('readme.rst')
+LONG_DESC    = read('README.rst')
 AUTHOR       = find_meta(*META_PATH, meta_key='author')
 AUTHOR_EMAIL = find_meta(*META_PATH, meta_key='email')
 URL          = find_meta(*META_PATH, meta_key='url')
@@ -63,11 +63,12 @@ PACKAGES     = setuptools.find_packages()
 
 # pull from requirements.IN, requirements.TXT is generated from this
 INSTALL_REQUIRES = read_requirements('requirements.in')
+DEV_REQUIRES = read_requirements('dev-requirements.in')
 
 EXTRA_REQUIRES = {
     'build': [
         'pip-tools',
-    ],
+    ] + DEV_REQUIRES,
     'docs': [
         # 'sphinx >= 1.4',  # theme requires at least 1.4
         # 'cloud_sptheme >=1.8',

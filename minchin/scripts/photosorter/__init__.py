@@ -37,7 +37,7 @@ from typing import List, Optional, Mapping, Dict, Set, Tuple  # noqa
 
 
 # Metadata
-__name__ = 'minchin.scripts.photosorter'
+__title__ = 'minchin.scripts.photosorter'
 __version__ = '2.0.0+dev.20170826.0'
 __description__ = "A Python script to keep my photos from Dropbox organized."
 __author__ = "William Minchin"
@@ -306,11 +306,13 @@ class MoveFileThread(threading.Thread):
         self.is_running = False
 
 
-def parse_args(argv: List[str]) -> argparse.Namespace:
+def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('src_folder')
     parser.add_argument('dest_folder')
-    return parser.parse_args(argv[1:])
+    parser.add_argument('--version', '-v', action='version',
+                        version='{}, version {}'.format(__title__, __version__))
+    return parser.parse_args()
 
 
 def run(src_folder: str, dest_folder: str):
@@ -339,8 +341,8 @@ def run(src_folder: str, dest_folder: str):
     move_thread.join()
 
 
-def main(argv: List[str]) -> int:
-    args = parse_args(argv)
+def main():
+    args = parse_args()
     logger.info('Watching %s for changes, destination is %s',
                 args.src_folder, args.dest_folder)
     run(args.src_folder, args.dest_folder)
