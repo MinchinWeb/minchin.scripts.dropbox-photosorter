@@ -4,9 +4,9 @@ photosorter
 .. image:: https://img.shields.io/pypi/v/minchin.scripts.photosorter.svg?style=flat
     :target: https://pypi.python.org/pypi/minchin.scripts.photosorter/
 .. image:: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter.svg?branch=master
-    :target: https://travis-ci.org/dbader/photosorter)
+    :target: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter)
 .. image:: https://coveralls.io/repos/MinchinWeb/minchin.scripts.photosorter/badge.svg?branch=master
-    :target: https://coveralls.io/r/dbader/photosorter?branch=master
+    :target: https://coveralls.io/r/MinchinWeb/minchin.scripts.photosorter?branch=master
 
 A little Python script to keep my photos from Dropbox organized. Designed to be
 run intermittently, but will run forever by default.
@@ -21,7 +21,7 @@ organized. Duplicates are detected and ignored based on their SHA1 hash. Photos
 taken in the same instant get de-duplicated by adding a suffix (``-1``, ``-2``,
 etc) to their filenames.
 
-The result looks somewhat like this:
+The result looks somewhat like this::
 
     ├── 2013-01
     │   ├── 2013_01_05
