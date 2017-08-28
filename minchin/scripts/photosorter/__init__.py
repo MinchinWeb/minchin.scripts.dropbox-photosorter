@@ -37,7 +37,7 @@ import watchdog.observers
 
 # Metadata
 __title__ = 'minchin.scripts.photosorter'
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 __description__ = "A Python script to keep my photos from Dropbox organized."
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
@@ -49,7 +49,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('photosorter')
 
 # lowercased file extensions to move
-VALID_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.mov']
+VALID_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.mov', '.mp4']
 
 class HashCache:
     """
