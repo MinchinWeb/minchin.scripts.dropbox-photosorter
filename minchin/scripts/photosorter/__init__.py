@@ -37,7 +37,7 @@ import watchdog.observers
 
 # Metadata
 __title__ = 'minchin.scripts.photosorter'
-__version__ = "2.0.0+dev.20170826.1"
+__version__ = "2.0.0"
 __description__ = "A Python script to keep my photos from Dropbox organized."
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
