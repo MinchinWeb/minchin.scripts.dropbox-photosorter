@@ -109,4 +109,5 @@ Changes
 
 - move to ``minchin.scripts.photosorter`` namespace
 - do releases via ``minchin.releaser``
+- changed generated file folder layout
 - add option to move existing files
