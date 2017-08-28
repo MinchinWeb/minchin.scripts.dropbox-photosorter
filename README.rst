@@ -94,3 +94,19 @@ Meta
 Distributed under the MIT license. See ``LICENSE.txt`` for more information.
 
 https://github.com/MinchinWeb/minchin.scripts.photosorter
+
+Changes
+------
+
+2.1.0 -- 2017-08-28
+"""""""""""""""""""
+
+- also move MP4 files
+- add changelog to readme
+
+2.0.0 -- 2017-08-27
+"""""""""""""""""""
+
+- move to ``minchin.scripts.photosorter`` namespace
+- do releases via ``minchin.releaser``
+- add option to move existing files
