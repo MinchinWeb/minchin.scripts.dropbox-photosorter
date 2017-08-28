@@ -1,15 +1,13 @@
+sudo: false
 language: python
-
 python:
     - "3.6"
-
+cache: pip
 install:
     - pip install -r requirements.txt
     - pip install -r dev-requirements.txt
-
 script:
     - py.test
     - mypy --silent-imports *.py
-
 after_success:
     - coveralls

@@ -4,7 +4,7 @@ photosorter
 .. image:: https://img.shields.io/pypi/v/minchin.scripts.photosorter.svg?style=flat
     :target: https://pypi.python.org/pypi/minchin.scripts.photosorter/
 .. image:: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter.svg?branch=master
-    :target: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter)
+    :target: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter
 .. image:: https://coveralls.io/repos/MinchinWeb/minchin.scripts.photosorter/badge.svg?branch=master
     :target: https://coveralls.io/r/MinchinWeb/minchin.scripts.photosorter?branch=master
 
