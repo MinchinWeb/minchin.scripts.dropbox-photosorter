@@ -1,0 +1,11 @@
+include *.example
+include *.in
+include *.py
+include *.txt
+include invoke.yaml
+include pytest.ini
+include photosorter.conf.example
+include MANIFEST.in
+recursive-include minchin *.py
+recursive-include minchin *.jpg
+recursive-include minchin *.png
