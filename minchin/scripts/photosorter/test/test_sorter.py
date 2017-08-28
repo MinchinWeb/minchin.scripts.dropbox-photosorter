@@ -7,10 +7,10 @@ $ py.test -f test_sorter.py -v
 
 """
 from datetime import datetime
-from unittest import mock  # type: ignore
 import os
 import time
 import unittest
+from unittest import mock  # type: ignore
 
 import sorter
 
