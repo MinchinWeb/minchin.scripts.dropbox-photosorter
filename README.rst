@@ -8,7 +8,7 @@ photosorter
 .. image:: https://coveralls.io/repos/MinchinWeb/minchin.scripts.photosorter/badge.svg?branch=master
     :target: https://coveralls.io/r/dbader/photosorter?branch=master
 
-A little Python script to keep my photos organized on Dropbox. Designed to be
+A little Python script to keep my photos from Dropbox organized. Designed to be
 run intermittently, but will run forever by default.
 
 It watches a *source directory* for modifications and moves new image files to

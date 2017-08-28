@@ -66,9 +66,7 @@ INSTALL_REQUIRES = read_requirements('requirements.in')
 DEV_REQUIRES = read_requirements('dev-requirements.in')
 
 EXTRA_REQUIRES = {
-    'build': [
-        'pip-tools',
-    ] + DEV_REQUIRES,
+    'build': DEV_REQUIRES,
     'docs': [
         # 'sphinx >= 1.4',  # theme requires at least 1.4
         # 'cloud_sptheme >=1.8',

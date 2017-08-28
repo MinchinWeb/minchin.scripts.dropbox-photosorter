@@ -1,20 +1,10 @@
 releaser:
-  module_name: minchin.scirpts.photosorter
+  module_name: minchin.scripts.photosorter
   here: .
   docs: .
   test: None
   source: minchin
   changelog: None
   version: minchin\scripts\photosorter\__init__.py
-  test_command: "green -kq"
-  version_bump: none
-  extra_packages:
-    test:
-      - invoke
-      - isort
-      - pkginfo
-      - semantic_version
-      - twine
-      - wheel
-    pypi:
-      - invoke
+  test_command: None
+  version_bump: None

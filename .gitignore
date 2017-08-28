@@ -36,6 +36,6 @@ nosetests.xml
 .pydevproject
 
 venv
-env
+env*
 .cache
 .DS_Store
