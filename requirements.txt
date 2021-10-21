@@ -4,11 +4,9 @@
 #
 #    pip-compile --output-file=requirements.txt requirements.in
 #
-argcomplete==1.11.1
+argcomplete==1.12.3
     # via -r requirements.in
-exifread==2.1.2
+exifread==2.3.2
     # via -r requirements.in
-pathtools==0.1.2
-    # via watchdog
-watchdog==0.10.2
+watchdog==2.1.6
     # via -r requirements.in
