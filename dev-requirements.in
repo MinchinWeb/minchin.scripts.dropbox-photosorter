@@ -4,5 +4,5 @@ pytest-xdist>=1.14
 pytest-flake8>=0.5
 pytest>=2.9.2
 mypy-lang>=0.4.1
-pip-tools
+pip-tools>=6
 minchin.releaser>=0.5.4
