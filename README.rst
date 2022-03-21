@@ -3,10 +3,25 @@ photosorter
 
 .. image:: https://img.shields.io/pypi/v/minchin.scripts.photosorter.svg?style=flat
     :target: https://pypi.python.org/pypi/minchin.scripts.photosorter/
-.. image:: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter.svg?branch=master
-    :target: https://travis-ci.org/MinchinWeb/minchin.scripts.photosorter
+    :alt: PyPI version number
+
+.. image:: https://img.shields.io/pypi/pyversions/minchin.scripts.photosorter?style=flat
+    :target: https://pypi.python.org/pypi/minchin.scripts.photosorter/
+    :alt: Supported Python version
+
+.. image:: https://img.shields.io/pypi/l/minchin.scripts.photosorter.svg?style=flat&color=green
+    :target: https://github.com/MinchinWeb/minchin.scripts.photosorter/blob/master/LICENSE.txt
+    :alt: License
+
 .. image:: https://coveralls.io/repos/MinchinWeb/minchin.scripts.photosorter/badge.svg?branch=master
     :target: https://coveralls.io/r/MinchinWeb/minchin.scripts.photosorter?branch=master
+    :alt: Test Coverage
+
+.. image:: https://img.shields.io/pypi/dm/minchin.scripts.photosorter.svg?style=flat
+    :target: https://pypi.python.org/pypi/minchin.scripts.photosorter/
+    :alt: Download Count
+
+
 
 A little Python script to keep my photos from Dropbox organized. Designed to be
 run intermittently, but will run forever by default.
@@ -24,17 +39,17 @@ suffix (``-1``, ``-2``, etc) to their filenames.
 The result looks somewhat like this::
 
     ├── 2013-01
-    │   ├── 2013_01_05
-    │   │   ├── 2013-01-05\ 13.24.45.jpg
-    │   │   ├── 2013-01-05\ 14.25.54.jpg
-    │   │   └── 2013-01-05\ 21.28.48-1.jpg
-    │   ├── 2013_01_06
-    │   │   ├── 2013-01-06\ 16.05.02.jpg
-    │   │   ├── 2013-01-06\ 19.59.25.jpg
-    │   │   ├── 2013-01-06\ 20.40.28.jpg
-    │   │   └── 2013-01-06\ 21.14.38.jpg
-    │   └── 2013_01_08
-    │       └── 2013-01-08\ 11.45.51.jpg
+    │   ├── 2013_01_05
+    │   │   ├── 2013-01-05\ 13.24.45.jpg
+    │   │   ├── 2013-01-05\ 14.25.54.jpg
+    │   │   └── 2013-01-05\ 21.28.48-1.jpg
+    │   ├── 2013_01_06
+    │   │   ├── 2013-01-06\ 16.05.02.jpg
+    │   │   ├── 2013-01-06\ 19.59.25.jpg
+    │   │   ├── 2013-01-06\ 20.40.28.jpg
+    │   │   └── 2013-01-06\ 21.14.38.jpg
+    │   └── 2013_01_08
+    │       └── 2013-01-08\ 11.45.51.jpg
     ├── 2013-02
     |   └─ ...
     ├── ...
