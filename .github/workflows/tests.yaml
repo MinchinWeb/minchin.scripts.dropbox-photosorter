@@ -36,6 +36,9 @@ jobs:
       - name: Install requirements (via invoke)
         run: invoke upgrade --requirements-file dev --verbose
 
+      - name: Install this package
+        run: pip install .
+
       - name: Unit Tests
         run: py.test
 
