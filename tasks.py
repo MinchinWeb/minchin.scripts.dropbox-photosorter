@@ -2,7 +2,10 @@ from pathlib import Path
 
 from invoke import task
 
-from minchin.releaser import make_release
+try:
+    from minchin.releaser import make_release
+except ImportError:
+    print("[WARN] minchin.releaser not available.")
 from minchin.text import subtitle, title
 
 REQUIREMENT_FILES = [

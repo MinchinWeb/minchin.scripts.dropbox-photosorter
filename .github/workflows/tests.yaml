@@ -1,0 +1,43 @@
+name: Unit Tests for minchin.scripts.photosorter
+
+on:
+  push:
+    # branches:
+    #   - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      # https://abbbi.github.io/actions/
+      # disables some Ubuntu functionality that we don't need in a "throw away" runtime
+      - uses: abbbi/github-actions-tune@v1
+
+      - name: Checkout Source
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        id: pthon-install
+        uses: actions/setup-python@v4
+        with:
+          # supported versions: https://github.com/actions/python-versions/releases
+          python-version: 3.11
+          cache: pip
+          cache-dependency-path: '.requirements/*.txt'
+
+      - name: Upgrade Pip, etc
+        run: python -m pip install pip setuptools wheel --upgrade
+
+      - name: Install pip-tools, invoke, etc
+        run: pip install pip-tools invoke minchin.text
+
+      - name: Install requirements (via invoke)
+        run: invoke upgrade --requirements-file dev --verbose
+
+      - name: Unit Tests
+        run: py.test
+
+      - name: Type Checking
+        run: mypy --silent-imports *.py
