@@ -40,4 +40,4 @@ jobs:
         run: py.test
 
       - name: Type Checking
-        run: mypy --silent-imports *.py
+        run: mypy .
