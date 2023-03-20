@@ -7,7 +7,7 @@ $ py.test test_sorter.py -v
 
 or (from project root):
 
-$ py.test .\minchin\scripts\photosorter\test\test_sorter.py -v
+$ py.test ./minchin/scripts/photosorter/test/test_sorter.py -v
 
 """
 from datetime import datetime
