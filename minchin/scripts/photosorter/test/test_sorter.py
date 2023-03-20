@@ -3,7 +3,11 @@ Unit tests for sorter.py
 
 Run with:
 
-$ py.test -f test_sorter.py -v
+$ py.test test_sorter.py -v
+
+or (from project root):
+
+$ py.test .\minchin\scripts\photosorter\test\test_sorter.py -v
 
 """
 from datetime import datetime
@@ -114,6 +118,11 @@ class RenamerTests(unittest.TestCase):
             "/home/user/Dropbox", str(EXAMPLE_DIR / "2004-05-07 20.16.31.jpg")
         )
         expected = "/home/user/Dropbox/2004-05/2004_05_07/2004-05-07 20.16.31.jpg"
+
+        # work on both Windows and Linux
+        case = os.path.normpath(case)
+        expected = os.path.normpath(expected)
+
         self.assertEquals(case, expected)
 
     def test_ignore_non_images(self):
