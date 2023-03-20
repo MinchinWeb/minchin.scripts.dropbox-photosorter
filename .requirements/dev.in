@@ -1,7 +1,7 @@
 coveralls >= 1.1
-pytest-cov >= 2.2.1
+# pytest-cov >= 2.2.1
 pytest-xdist >= 1.14
-pytest-flake8 >= 0.5
+# pytest-flake8 >= 0.5
 pytest >= 2.9.2
 mypy
 pip-tools >= 6
