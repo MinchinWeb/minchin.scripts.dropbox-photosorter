@@ -38,7 +38,7 @@ import watchdog.observers
 
 # Metadata
 __title__ = "minchin.scripts.photosorter"
-__version__ = "2.1.0"
+__version__ = "2.1.1.dev.0"
 __description__ = "A Python script to keep my photos from Dropbox organized."
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
@@ -191,7 +191,7 @@ def folder_from_datetime(dt: datetime.datetime) -> str:
 
 
 def filename_from_datetime(dt: datetime.datetime, path: str) -> str:
-    """Returs basename + original extension."""
+    """Returns basename + original extension."""
     base = basename_from_datetime(dt)
     ext = os.path.splitext(path)[1]
     return base + ext.lower()
