@@ -7,7 +7,7 @@ mypy-lang>=0.4.1
 pip-tools>=6
 minchin.releaser>=0.5.4
 
-# minimum versions for secutity reasons
+# minimum versions for security reasons
 urllib3>=1.26.5
 py>=1.10.0
 Pygments>=2.7.4

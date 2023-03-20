@@ -62,8 +62,8 @@ LICENSE      = find_meta(*META_PATH, meta_key='license')
 PACKAGES     = setuptools.find_packages()
 
 # pull from requirements.IN, requirements.TXT is generated from this
-INSTALL_REQUIRES = read_requirements('requirements.in')
-DEV_REQUIRES = read_requirements('dev-requirements.in')
+INSTALL_REQUIRES = read_requirements('.requirements/base.in')
+DEV_REQUIRES = read_requirements('.requirements/dev.in')
 
 EXTRA_REQUIRES = {
     'build': DEV_REQUIRES,
