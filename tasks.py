@@ -6,10 +6,15 @@ try:
     from minchin.releaser import make_release
 except ImportError:
     print("[WARN] minchin.releaser not available.")
-from minchin.text import subtitle, title
+
+try:
+    from minchin.text import subtitle, title
+except ImportError:
+    subtitle = print
+    title = print
 
 REQUIREMENT_FILES = [
-    "build",
+    "base",
     "dev",
 ]
 
@@ -45,7 +50,7 @@ def update(ctx, verbose=False):
             print()
             subtitle(f"** {requirement} **")
             print()
-            ctx.run(f"pip-compile {base_path / requirement}.in", hide=not verbose)
+            ctx.run(f"pip-compile {base_path / requirement}.in --upgrade", hide=not verbose)
             print(f"-r {requirement}.in", file=all_requirements_file)
 
     print()
