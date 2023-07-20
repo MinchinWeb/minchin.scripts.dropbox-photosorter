@@ -56,26 +56,26 @@ class RenamerTests(unittest.TestCase):
     def test_basename_from_datetime(self):
         case = sorter.basename_from_datetime(datetime(2004, 5, 7, 20, 16, 31))
         expected = "2004-05-07 20.16.31"
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     def test_filename_from_datetime(self):
         case = sorter.filename_from_datetime(
             datetime(2004, 5, 7, 20, 16, 31), "./test_examples/img0001.jpg"
         )
         expected = "2004-05-07 20.16.31.jpg"
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
         case = sorter.filename_from_datetime(
             datetime(2004, 5, 7, 20, 16, 31), "./test_examples/somefile.JPG"
         )
         expected = "2004-05-07 20.16.31.jpg"
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
         case = sorter.filename_from_datetime(
             datetime(2004, 5, 7, 20, 16, 31), "./test_examples/no-ext"
         )
         expected = "2004-05-07 20.16.31"
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     def test_folder_from_datetime(self):
         case = sorter.folder_from_datetime(datetime(2014, 2, 7))
@@ -85,7 +85,7 @@ class RenamerTests(unittest.TestCase):
         case = os.path.normpath(case)
         expected = os.path.normpath(expected)
 
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     def test_path_from_datetime(self):
         case = sorter.path_from_datetime(
@@ -97,7 +97,7 @@ class RenamerTests(unittest.TestCase):
         case = os.path.normpath(case)
         expected = os.path.normpath(expected)
 
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     def test_path_from_datetime_2(self):
         case = sorter.path_from_datetime(
@@ -111,7 +111,7 @@ class RenamerTests(unittest.TestCase):
         case = os.path.normpath(case)
         expected = os.path.normpath(expected)
 
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     def test_dest_path(self):
         case = sorter.dest_path(
@@ -123,7 +123,7 @@ class RenamerTests(unittest.TestCase):
         case = os.path.normpath(case)
         expected = os.path.normpath(expected)
 
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     def test_ignore_non_images(self):
         self.assertTrue(sorter.is_valid_filename("test.png"))
@@ -141,13 +141,13 @@ class RenamerTests(unittest.TestCase):
             "test_examples/root/2006/2006-09/2006-09-09 07.00.24.jpg"
         )
         expected = "test_examples/root/2006-09/2006_09_09/2006-09-09 07.00.24-2.jpg"
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
         case = sorter.resolve_duplicate(
             "test_examples/root/2006/2006-09/2006-09-09 07.00.25.jpg"
         )
         expected = "test_examples/root/2006-09/2006_09_09/2006-09-09 07.00.25.jpg"
-        self.assertEquals(case, expected)
+        self.assertEqual(case, expected)
 
     @mock.patch("os.makedirs")
     @mock.patch("shutil.move")
@@ -192,33 +192,33 @@ class CreationDateTests(unittest.TestCase):
         reset_mtimes()
 
     def test_file_creation_date(self):
-        self.assertEquals(
+        self.assertEqual(
             sorter.file_creation_date("test_examples/2004-05-07 20.16.31.jpg"),
             datetime(2004, 5, 7, 11, 16, 31),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.file_creation_date("test_examples/2006-09-09 07.00.24.jpg"),
             datetime(2006, 9, 8, 22, 0, 24),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.file_creation_date("test_examples/2014-02-06 09.15.17.jpg"),
             datetime(2014, 2, 6, 9, 15, 17),
         )
 
     def test_exif_creation_date(self):
-        self.assertEquals(
+        self.assertEqual(
             sorter.exif_creation_date("test_examples/2004-05-07 20.16.31.jpg"),
             datetime(2004, 5, 7, 20, 16, 31),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.exif_creation_date("test_examples/2006-09-09 07.00.24.jpg"),
             datetime(2006, 9, 9, 7, 0, 24),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.exif_creation_date("test_examples/2014-02-06 09.15.17.jpg"),
             datetime(2014, 2, 6, 9, 15, 17),
         )
@@ -237,22 +237,22 @@ class CreationDateTests(unittest.TestCase):
             datetime(2004, 5, 7, 20, 16, 31),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.creation_date("test_examples/2006-09-09 07.00.24.jpg"),
             datetime(2006, 9, 9, 7, 0, 24),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.creation_date("test_examples/2014-02-06 09.15.17.jpg"),
             datetime(2014, 2, 6, 9, 15, 17),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.creation_date("test_examples/no-exif.jpg"),
             datetime(2014, 2, 23, 21, 47, 14),
         )
 
-        self.assertEquals(
+        self.assertEqual(
             sorter.creation_date("test_examples/test.png"),
             datetime(2014, 3, 8, 18, 31, 35),
         )
