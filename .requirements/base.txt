@@ -4,7 +4,7 @@
 #
 #    pip-compile '.requirements\base.in'
 #
-argcomplete==3.0.2
+argcomplete==3.1.1
     # via -r .requirements\base.in
 exifread==3.0.0
     # via -r .requirements\base.in
