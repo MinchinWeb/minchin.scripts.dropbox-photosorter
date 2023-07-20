@@ -56,7 +56,7 @@ def update(ctx, verbose=False):
     print()
     subtitle(f"** {all_requirements} **")
     print()
-    ctx.run(f"pip-compile {base_path / ALL_REQUIREMENT_FILE}.in", hide=not verbose)
+    ctx.run(f"pip-compile {base_path / ALL_REQUIREMENT_FILE}.in --upgrade", hide=not verbose)
 
 @task
 def upgrade(ctx, requirements_file="all", build=False, dev=False, verbose=False):

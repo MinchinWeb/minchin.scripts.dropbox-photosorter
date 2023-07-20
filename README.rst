@@ -126,6 +126,13 @@ Known Issues
 Changes
 -------
 
+Unreleased
+""""""""""
+
+- fix ``update`` support script, so it actually updates our requirements
+- move automated testing from Travis-CI to Github Actions
+
+
 2.1.0 -- 2017-08-28
 """""""""""""""""""
 
